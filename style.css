@@ -1,1 +1,66 @@
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  background-color: #fff8f0;
+  color: #c00;
+  margin: 0;
+  padding: 0;
+}
 
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+  color: #d40000;
+  text-shadow: 1px 1px 1px #00000020;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background-color: white;
+  border: 2px solid #ccc;
+  padding: 5px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: #d40000;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card span {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #d40000;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #a30000;
+}
