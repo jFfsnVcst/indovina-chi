@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indovina Chi</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f7f7f7, #eaeaea);
+      text-align: center;
+      padding-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'Comic Sans MS', cursive;
+      color: #e30000;
+      font-size: 2.5em;
+      margin: 20px 0 10px 0;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    button#resetBtn {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: #e30000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    button#resetBtn:hover {
+      background: #c20000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .card-name {
+      background: #f2f2f2;
+      padding: 6px;
+      font-weight: bold;
+      font-size: 13px;
+      border-top: 1px solid #ddd;
+      color: #333;
+    }
+
+    .card .x-mark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 0, 0, 0.5);
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .card.discarded .x-mark {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Indovina Chi</h1>
+  <button id="resetBtn">Resetta</button>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const characters = [
+      { name: "Pitbull", image: "https://via.placeholder.com/150x150?text=Pitbull" },
+      { name: "CiccioGamer89", image: "https://via.placeholder.com/150x150?text=CiccioGamer" },
+      { name: "Kiwi", image: "https://via.placeholder.com/150x150?text=Kiwi" },
+      { name: "Joon Koock", image: "https://via.placeholder.com/150x150?text=Joon+Koock" },
+      { name: "Caca", image: "https://via.placeholder.com/150x150?text=Caca" },
+      { name: "Blur", image: "https://via.placeholder.com/150x150?text=Blur" }
+      // Aggiungi qui altri personaggi
+    ];
+
+    const grid = document.getElementById("grid");
+
+    characters.forEach(char => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <img src="${char.image}" alt="${char.name}">
+        <div class="card-name">${char.name}</div>
+        <div class="x-mark">X</div>
+      `;
+      card.addEventListener("click", () => {
+        card.classList.toggle("discarded");
+      });
+      grid.appendChild(card);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      document.querySelectorAll(".card").forEach(card => {
+        card.classList.remove("discarded");
+      });
+    });
+  </script>
+</body>
+</html>
